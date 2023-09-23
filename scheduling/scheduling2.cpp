@@ -302,7 +302,7 @@ int main()
 {
     // Change to input2.txt if running for the second question
     // If running for the first, keep input.txt
-    freopen("input.txt", "r", stdin);
+    freopen("input2.txt", "r", stdin);
     int choice, n;
     cin >> choice >> n;
     // process p[n];
