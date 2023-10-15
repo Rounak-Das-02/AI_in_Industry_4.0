@@ -1,0 +1,47 @@
+Step 1: Install Darknet Base System
+
+Clone the Darknet repository: git clone https://github.com/pjreddie/darknet.git
+Navigate to the Darknet directory: cd darknet
+Build the Darknet base system: make
+
+
+Step 2: Load Pretrained Model Weights
+
+Choose a pretrained model (e.g., YOLOv3) and get its configuration and weights from the official website or repository.
+Download the model weights: wget https://pjreddie.com/media/files/yolov3.weights
+Test if the weights are loaded correctly: ./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg
+
+
+
+Step 3: Enable CUDA for Faster Processing
+
+Edit the Makefile in the Darknet directory: Change GPU=0 to GPU=1.
+Rebuild the project to enable CUDA: make
+Run Darknet with CUDA: ./darknet -i 1 imagenet test cfg/alexnet.cfg alexnet.weights
+
+
+
+Step 4: Install and Configure OpenCV
+
+Install OpenCV:
+Clone OpenCV: git clone https://github.com/opencv/opencv.git
+Clone OpenCV Contrib: git clone https://github.com/opencv/opencv_contrib.git
+Configure OpenCV with necessary parameters like -DCMAKE_BUILD_TYPE=Release.
+Build OpenCV: make -j7
+Install OpenCV: sudo make install
+Verify OpenCV configuration: pkg-config --cflags opencv4
+Modify the Makefile in Darknet: Change OPENCV=0 to OPENCV=1.
+
+
+
+Step 5: Test Everything
+
+Remake the Darknet project: make
+Test image loading and displaying: ./darknet imtest data/eagle.jpg
+
+
+
+Step 6: Real-time Object Detection
+
+For real-time webcam detection: ./darknet detector demo cfg/coco.data cfg/yolov3.cfg yolov3.weights
+For video detection: ./darknet detector demo cfg/coco.data cfg/yolov3.cfg yolov3.weights <video file>
